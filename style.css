@@ -1,0 +1,99 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  width: 100%;
+  height: 100dvh;
+  background: linear-gradient(135deg, #d9f1ff, #b7e5ff);
+}
+
+button {
+  border: none;
+}
+
+/* 전체 레이아웃 영역 */
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+
+.calculator-wrapper {
+  width: 320px;
+  height: 400px;
+  background: rgba(234, 234, 234, 0.4);
+  backdrop-filter: blur(12px);
+  box-shadow: 0 0 25px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 14px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  padding: 20px;
+}
+
+/* 계산결과값 나오는곳 */
+.cal-header {
+  width: 100%;
+  background: rgba(255, 255, 255, 0.4);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.2);
+  border-radius: 8px;
+  margin-bottom: 12px;
+}
+.cal-result {
+  display: flex;
+  align-items: center;
+  justify-content: end;
+  width: 100%;
+  height: 100%;
+  padding: 14px 12px;
+  font-size: 24px;
+}
+
+/* 연산자 숫자 */
+.cal-body {
+  height: 100%;
+  flex-grow: 1;
+}
+.grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+  width: 100%;
+  height: 100%;
+}
+
+.grid > button {
+  border-radius: 50%;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.grid > button:hover {
+  background: #e0e0e0;
+}
+
+.grid .zero {
+  border-radius: 40px;
+  grid-column: span 2;
+}
+
+.function,
+.operator {
+  background: #bfe1f6;
+}
+
+.grid .operator:hover,
+.grid .function:hover {
+  background: rgb(160, 220, 241);
+}
+/* 연산자 버튼 클릭시 배경색 입히기*/
+.bg-blue {
+  background: #2d6ecf;
+}
+.bg-gray {
+  background: #d1d1d1;
+}
