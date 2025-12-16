@@ -1,3 +1,19 @@
+// //연산자버튼을 뺀 나머지 버튼에 배경색을 넣고 연산자버튼클릭시 다른 색상 넣기
+// allBtn.forEach((numbtn) => {
+//   numbtn.addEventListener("click", function () {
+//     allBtn.forEach((btn) => {
+//       btn.classList.remove("bg-gray");
+//       btn.classList.remove("bg-blue");
+//     });
+//     //만약 이곳에 btn.blue(연산자버튼이) 클래스가포함되어있다면
+//     if (this.classList.contains("operator")) {
+//       this.classList.add("bg-blue");
+//     } else {
+//       this.classList.add("bg-gray");
+//     }
+//   });
+// });
+
 //btn-blue 클래스명 가진 모든버튼 가져오기
 const operatorBtn = document.querySelectorAll(".operator");
 
@@ -8,27 +24,26 @@ const numberBtn = document.querySelectorAll(".number");
 const allBtn = document.querySelectorAll("button");
 
 //숫자와 연산자 버튼 클릭하면 나오는곳
-const displayNum = document.querySelector(".cal-result");
-console.log(displayNum);
+const displayResult = document.querySelector(".cal-result");
 
-//연산자버튼을 뺀 나머지 버튼에 배경색을 넣고 연산자버튼클릭시 다른 색상 넣기
-allBtn.forEach((numbtn) => {
-  numbtn.addEventListener("click", function () {
-    allBtn.forEach((btn) => {
-      btn.classList.remove("bg-gray");
-      btn.classList.remove("bg-blue");
-    });
-    //만약 이곳에 btn.blue(연산자버튼이) 클래스가포함되어있다면
-    if (this.classList.contains("operator")) {
-      this.classList.add("bg-blue");
+//화면 초기값 0
+displayResult.textContent = 0;
+
+//숫자버튼을 클릭시 화면에 출력하는 함수
+numberBtn.forEach((num) => {
+  num.addEventListener("click", function (e) {
+    //만약 화면이 0 이라면 숫자버튼 으로 나오게 하기 (변경하기)
+    if (displayResult.textContent === "0") {
+      displayResult.textContent = num.textContent;
+      // console.log((displayResult.textContent = num.textContent)); //num만 쓰면 object그대로 화면에 출력이된다 num.textcontent 를 사용해 텍스트값을 가져와 화면에 출력을 해야한다
     } else {
-      this.classList.add("bg-gray");
+      displayResult.textContent += num.textContent;
     }
   });
 });
 
-/*
-  - 연산자 버튼을 누르면 Display에 있는 숫자를 각 변수에 저장합니다.
-  - 연산자 버튼에 이어 숫자 버튼을 클릭하면 숫자가 Display에 표시합니다.
-  - 연산자 버튼을 눌렀을 때, Display에 있는 숫자와 연산자를 Console에 출력합니다.
- */
+//clear 버튼 클릭시 초기화
+const clearBtn = document.querySelector(".clear");
+clearBtn.addEventListener("click", function (e) {
+  displayResult.textContent = 0; // innerHTML 사용시 완전히 글자가 다 없어짐 , true,false를 사용할수있나 ? 아님 textcontent=>0으로 표시를 하는게 낫나 ?
+});
