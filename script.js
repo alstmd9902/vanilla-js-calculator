@@ -26,20 +26,36 @@ const allBtn = document.querySelectorAll("button");
 //숫자와 연산자 버튼 클릭하면 나오는곳
 const displayResult = document.querySelector(".cal-result");
 
+//소수점
+const decimalBtn = document.querySelector(".decimal");
+
 //화면 초기값 0
 displayResult.textContent = 0;
 
 //숫자버튼을 클릭시 화면에 출력하는 함수
-numberBtn.forEach((num) => {
-  num.addEventListener("click", function (e) {
-    //만약 화면이 0 이라면 숫자버튼 으로 나오게 하기 (변경하기)
+numberBtn.forEach((btn) => {
+  btn.addEventListener("click", function (e) {
+    //만약 화면이 0 이라면 숫자버튼 으로 나오게 하기 (변경하기) / 소수점 추가하기
     if (displayResult.textContent === "0") {
-      displayResult.textContent = num.textContent;
+      displayResult.textContent = btn.textContent;
       // console.log((displayResult.textContent = num.textContent)); //num만 쓰면 object그대로 화면에 출력이된다 num.textcontent 를 사용해 텍스트값을 가져와 화면에 출력을 해야한다
     } else {
-      displayResult.textContent += num.textContent;
+      displayResult.textContent += btn.textContent;
     }
   });
+});
+
+//소수점 클릭 이벤트
+decimalBtn.addEventListener("click", function () {
+  // 이미 소수점이 있으면 아무 것도 안 함
+  if (displayResult.textContent.includes(".")) return;
+
+  // 화면이 0이면 0. 으로
+  if (displayResult.textContent === "0") {
+    displayResult.textContent = "0.";
+  } else {
+    displayResult.textContent += ".";
+  }
 });
 
 //clear 버튼 클릭시 초기화
